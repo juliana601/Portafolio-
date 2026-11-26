@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portafolio — Juliana Vargas
 
-## Getting Started
+Portafolio personal en Next.js / React. Mascota original **Nox**, construida con SVG articulado y animación por JavaScript; no depende de WebGL, GLB, GSAP ni Tailwind. La narrativa usa scroll nativo, CSS sticky y valores de progreso calculados con requestAnimationFrame.
 
-First, run the development server:
+## Arrancar en Windows (PowerShell)
 
-```bash
+1. Descomprime el ZIP en una carpeta nueva, por ejemplo `C:\proyectos\portafolio-nox`. Conserva tu proyecto anterior intacto.
+2. Abre la carpeta `portafolio-nox` en Visual Studio Code (debe contener `package.json`).
+3. Ejecuta:
+
+```powershell
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre http://localhost:3000. Para verificar producción: `npm run build`. Para comprobar ESLint: `npm run lint`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+El ZIP no incluye `node_modules`, `.next`, `.git` ni archivos `.env`. Se conserva la versión de Next y React del proyecto original.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Interacciones
 
-## Learn More
+- Mueve el mouse para que Nox se acerque y te siga con la mirada. Sin movimiento, explora su entorno.
+- Haz clic o toca un espacio libre para invocar una estrella. Nox se acerca y la recoge, dejando partículas.
+- Haz clic directamente en Nox para saludarlo. Usa NOX ON/OFF si deseas ocultar la mascota.
+- Desliza para transformar el hero. La exposición de proyectos se mueve horizontalmente en escritorios con suficiente espacio; en móvil se recorre verticalmente.
+- Los botones 01 / 02 / 03 llevan a cada proyecto y «Explorar proyecto» abre una ficha con la información existente. Escape cierra el diálogo o el menú.
+- La mascota reaparece al entrar y salir de secciones y permanece en Contacto. Se reduce la animación si el sistema solicita menos movimiento.
 
-To learn more about Next.js, take a look at the following resources:
+## Imágenes y contacto incorporados
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Las tres capturas reales de proyectos y el retrato generado a partir de las fotos de referencia y aprobado por Juliana están incluidos en `public/images/` (`profile.jpg`, `effiadmi.jpg`, `alquipc.jpg`, `tienda.jpg`). Se optimizaron como JPG sin cambiar su composición. El correo y el número de teléfono proporcionados están en `contactLinks` dentro de `src/app/components/sections/PortfolioContent.jsx`. Se conserva GitHub; no se añadieron LinkedIn, otros repositorios ni hoja de vida. El teléfono abre el marcador mediante `tel:` y el correo utiliza `mailto:`. Al publicar el sitio, ambos serán visibles públicamente.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Archivos principales
 
-## Deploy on Vercel
+- `src/app/components/hero/Hero.jsx`: portada y menú.
+- `src/app/components/experience/Nox.jsx`: dibujo SVG, animación, estrellas y eventos.
+- `src/app/components/experience/flight.js`: sistema de vuelo con aceleración, frenado y límites.
+- `src/app/components/experience/ScrollStory.jsx`: controlador de narrativa y galería.
+- `src/app/components/sections/PortfolioContent.jsx`: contenido profesional y fichas de proyecto.
+- `src/app/globals.css`: sistema visual y responsive.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Verificación realizada
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Los componentes fueron transpilados a JavaScript y comprobados con React en Chromium a 1440×900 y 390×844. Se verificaron el seguimiento del cursor, la captura de estrellas, navegación, galería horizontal, diálogo de proyecto, Escape y ausencia de desbordamiento horizontal en la vista móvil ensayada. No se pudo ejecutar una compilación de Next completa en el entorno Linux: el ZIP original trae SWC de Windows y no hay acceso al registro de npm. La prueba del proyecto Next se debe completar en Windows. La fuente Space Grotesk se obtiene de Google Fonts cuando hay conexión y tiene un fallback a Arial.
