@@ -24,3 +24,19 @@
 
 /* Mantener los datos de contacto legibles incluso en pantallas estrechas. */
 .contact-grid > *{min-width:0}.contact-link{gap:12px}.contact-link>span:first-child{min-width:0;overflow-wrap:anywhere}.contact-link>span:last-child{flex-shrink:0}
+
+/* Formulario de contacto: mantiene la identidad de la escena final. */
+.contact-main{min-width:0;display:grid;gap:32px}
+.contact-form{min-width:0;display:grid;gap:18px;padding:clamp(20px,3vw,32px);border:1px solid #b9a6e266;border-radius:18px;background:linear-gradient(135deg,#ffffff12,#ffffff06);color:#fff}
+.contact-form h3{font-size:clamp(28px,3.2vw,44px);line-height:1.05;letter-spacing:-.055em}
+.contact-form-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.contact-form label{min-width:0;display:grid;gap:8px;font-size:12px;font-weight:600;color:#f1e8ff;position:relative}
+.contact-form label>span{display:inline;position:absolute;right:0;top:0;color:#ddc6ff}
+.contact-form input:not([type=hidden]),.contact-form textarea{width:100%;min-width:0;border:1px solid #d4bff377;border-radius:9px;background:#2f196866;color:#fff;padding:13px 12px;font:inherit;font-size:16px;line-height:1.4;outline:none}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#d2c3ec;font-size:14px;opacity:1}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#e9d7ff;box-shadow:0 0 0 3px #dac1ff33}
+.contact-form textarea{resize:vertical;min-height:125px}
+.contact-form-note{font-size:12px;line-height:1.5;color:#e4d7f5}.contact-form-note a{text-decoration:underline;text-underline-offset:2px}
+.contact-submit{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-radius:9px;background:#f4f0fa;color:#43268e;font-size:14px;font-weight:700;transition:background .2s,transform .2s}.contact-submit:hover{background:#ded0ff;transform:translateY(-2px)}.contact-submit span{font-size:20px}
+.contact-form-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+@media(max-width:1050px){.contact-form-row{grid-template-columns:1fr}}

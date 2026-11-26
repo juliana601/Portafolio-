@@ -489,6 +489,7 @@ function Contact() {
       />
 
       <div className="contact-grid">
+        <div className="contact-main">
         <div className="contact-copy">
           <p>
             Soy una persona comprometida, perseverante y creativa. Me interesa
@@ -506,6 +507,43 @@ function Contact() {
           </p>
         </div>
 
+        <form
+          className="contact-form"
+          action={`https://formsubmit.co/${contactLinks.email}`}
+          method="POST"
+          aria-labelledby="contact-form-title"
+          onSubmit={(event) => {
+            const returnUrl = new URL(window.location.href);
+            returnUrl.hash = "contacto";
+            event.currentTarget.elements.namedItem("_next").value = returnUrl.href;
+          }}
+        >
+          <span className="section-index section-index-light">ESCRÍBEME</span>
+          <h3 id="contact-form-title">Cuéntame tu idea.</h3>
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde el portafolio" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" defaultValue="" />
+          <div className="contact-form-trap" aria-hidden="true">
+            <label>No completar <input type="text" name="_honey" tabIndex={-1} autoComplete="off" /></label>
+          </div>
+          <div className="contact-form-row">
+            <label htmlFor="contact-name">Nombre <span>*</span>
+              <input id="contact-name" name="name" autoComplete="name" placeholder="Tu nombre" required maxLength={100} />
+            </label>
+            <label htmlFor="contact-email">Correo electrónico <span>*</span>
+              <input id="contact-email" name="email" type="email" autoComplete="email" placeholder="tu@correo.com" required maxLength={254} />
+            </label>
+          </div>
+          <label htmlFor="contact-subject">Asunto <span>*</span>
+            <input id="contact-subject" name="asunto" placeholder="¿De qué hablamos?" required maxLength={150} />
+          </label>
+          <label htmlFor="contact-message">Mensaje <span>*</span>
+            <textarea id="contact-message" name="message" placeholder="Cuéntame un poco más…" rows={5} required maxLength={3000} />
+          </label>
+          <p className="contact-form-note">* Campos obligatorios. Usaré tus datos para responderte. El envío se procesa mediante <a href="https://formsubmit.co/" target="_blank" rel="noreferrer">FormSubmit</a> y puede requerir una comprobación de seguridad.</p>
+          <button className="contact-submit" type="submit">Enviar mensaje <span aria-hidden="true">↗</span></button>
+        </form>
+        </div>
         <div className="contact-links">
           <span className="section-index section-index-light">CANALES DE CONTACTO</span>
 

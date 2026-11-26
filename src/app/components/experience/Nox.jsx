@@ -114,7 +114,9 @@ export default function Nox(){
       if(reduced){pos.x=tx;pos.y=ty;pos.vx=0;pos.vy=0;}else steer(pos,{x:tx,y:ty},dt,bounds);
       const tilt=clamp(pos.vx/32,-16,16),squash=now<burstUntil?1+.07*Math.sin((burstUntil-now)*.022):1;
       node.style.transform=`translate3d(${pos.x}px,${pos.y}px,0) translate(-50%,-50%) rotate(${tilt}deg) scale(${squash})`;
-      node.classList.toggle('is-contact',contact);node.style.width=`${Math.max(size,1)}px`;node.style.opacity=String(clamp(size/55,0,1));node.style.visibility=size<3?'hidden':'visible';node.style.pointerEvents=size>55&&!menu?'auto':'none';node.tabIndex=size>55&&!menu?0:-1;
+      node.classList.toggle('is-contact',contact);node.style.width=`${Math.max(size,1)}px`;node.style.opacity=String(clamp(size/55,0,1));node.style.visibility=size<3?'hidden':'visible';const formRect=contact?document.querySelector('.contact-form')?.getBoundingClientRect():null;
+      const overForm=formRect&&pos.x+size*.55>formRect.left&&pos.x-size*.55<formRect.right&&pos.y+size*.55>formRect.top&&pos.y-size*.55<formRect.bottom;
+      node.style.pointerEvents=size>55&&!menu&&!overForm?'auto':'none';node.tabIndex=size>55&&!menu&&!overForm?0:-1;
       node.style.setProperty('--eye-x',`${tracking?clamp((pointer.x-pos.x)/28,-4,4):clamp(pos.vx/80,-4,4)}px`);
       node.style.setProperty('--eye-y',`${tracking?clamp((pointer.y-pos.y)/36,-3,3):clamp(pos.vy/100,-3,3)}px`);
       bubble.textContent=message;bubble.style.opacity=now<messageUntil&&size>75&&!menu?'1':'0';
